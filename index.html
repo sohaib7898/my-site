@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    /* تنسيق روابط قائمة التنقل */
+    .navbar-nav .nav-link {
+      font-weight: 500 !important;
+      font-size: 1.15rem !important;
+      text-align: center;
+    }
+  
+    /* إخفاء القوائم المنسدلة افتراضيًا */
+    .dropdown-menu {
+      display: none;
+      transition: opacity 0.2s ease-in-out;
+    }
+  
+    /* إظهار القائمة المنسدلة عند التحويم */
+    .nav-item.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+  
+    /* إظهار القائمة الفرعية (مثل "التفاصيل") عند التحويم */
+    .nav-item.dropdown .nav-item.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+  
+    /* تنسيق القوائم الفرعية مثل "من نحن" لتظهر على اليمين */
+    .dropdown-submenu {
+      position: relative;
+    }
+  
+    .dropdown-submenu > .dropdown-menu {
+      top: 0;
+      right: 100%; /* تظهر على اليمين */
+      margin-top: 0;
+      margin-right: 0;
+      position: absolute;
+      display: none;
+      z-index: 1000;
+    }
+  
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: block;
+    }
+  
+    /* التأكد من أن القائمة تظهر عند التحويم على dropdown-item.dropdown-toggle */
+    .dropdown-item.dropdown-toggle:hover + .dropdown-menu {
+      display: block;
+    }
+  
+    /* ضبط المحاذاة والعرض لعناصر القائمة */
+    .dropdown-menu .dropdown-item {
+      text-align: right;
+      white-space: nowrap;
+    }
+  
+    /* لجعل كل dropdown-menu تظهر بشكل منفصل عند تحويم واحدة فقط */
+    .nav-item.dropdown:hover > .dropdown-menu,
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: block;
+    }
+
+    
+  
+  </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Select all dropdowns and dropdown menus
+    const $dropdown = $(".nav-item.dropdown");
+    const $dropdownToggle = $(".nav-item.dropdown > .dropdown-toggle");
+    const $dropdownMenu = $(".dropdown-menu");
+    const showClass = "show"; // Class to toggle visibility
+
+    // Hover event for "من نحن" dropdown to show the dropdown menu
+    $dropdown.hover(
+      function() {
+        $(this).children(".dropdown-menu").stop(true, true).slideDown(200); // Show menu on hover
+
+      },
+      function() {
+        $(this).children(".dropdown-menu").stop(false, ).slideUp(200); // Hide menu on hover out
+    
+
+      }
+    );
+
+    // Optionally: Close the dropdown when clicking outside of the dropdown
+    $(document).on("click", function(e) {
+      if (!$(e.target).closest(".dropdown").length) {
+        $dropdownMenu.stop(true, true).slideUp(200); // Close all dropdowns if clicked outside
+      }
+    });
+  });
+</script>
+<style>
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  right: 100%;    /* تظهر القائمة الفرعية من جهة اليمين */
+  left: auto;     /* مهم لتعطيل الاتجاه الافتراضي لليسار */
+  margin-top: 0;
+  margin-right: 500;
+  position: absolute;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-submenu.show > .dropdown-menu {
+  display: block;
+} 
+
+.dropdown-container {
+  display: flex;
+  gap: 20px;  /* Space between the dropdowns */
+  align-items: flex-start;  /* Align items to the top */
+}
+
+/* RTL container */
+.rtl-dropdown {
+  direction: rtl;
+  text-align: right;
+}
+
+/* القائمة الفرعية */
+.dropdown-submenu {
+  position: relative;
+}
+
+.custom-button {
+  background-color: #06BBCC; /* Set button background color */
+  color: white; /* Set text color to white */
+  border: none; /* Remove default border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 14px 20px; /* Padding inside the button */
+  font-size: 1rem; /* Set font size */
+  font-weight: bold; /* Make the text bold */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+.custom-button:hover {
+  background-color: #06BBCC; /* Darker shade when hovering */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.custom-button:focus {
+  outline: none; /* Remove focus outline */
+  box-shadow: 0 0 10px rgba(6, 187, 204, 0.5); /* Add focus shadow for accessibility */
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  right: 100%;   /* تظهر جهة اليسار من العنصر */
+  left: auto;
+  margin-top: 0;
+  margin-right: 0;
+  display: none;
+  position: absolute;
+  z-index: 1000;
+}
+
+.dropdown-submenu:hover > .dropdown-menu,
+.dropdown-submenu.show > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Align items to the top */
+  direction: rtl; /* Right to Left direction for the entire container */
+}
+
+
+    .dropdown-submenu {
+      position: relative;
+    }
+  
+    .dropdown-submenu > .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -1px;
+      display: none;
+      position: absolute;
+    }
+  
+    .dropdown-submenu.show > .dropdown-menu {
+      display: block;
+    }
+  </style>
+  
+  <script>
+    document.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const submenu = this.parentElement;
+        submenu.classList.toggle('show');
+      });
+    });
+  </script>
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <title>مكتبة كلية العلوم الانسانية</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/logo.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Kufi+Arabic:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" />
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+<!-- ربط خط Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- ربط أيقونات Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- الشريط العلوي يحتوي على الصورة والقوائم -->
+<div class="header-bar">
+  <!-- زر التبديل بين الوضع الليلي والنهاري -->
+  <button class="switch-button" id="theme-toggle">
+    <span class="slider"></span>
+  </button>
+  <!-- القوائم في المنتصف -->
+  <div class="dropdown-bar">
+    <!-- اتصل بنا -->
+    <div class="dropdown rtl-dropdown">
+      <button class="btn custom-button"><i class="fas fa-phone"></i> اتصل بنا</button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="pagesugg.html"><i class="fas fa-lightbulb"></i> اقترح تطوير الموقع</a></li>
+        <li><a class="dropdown-item" href="pageqna.html"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+
+    <!-- المصادر الرقمية -->
+    <div class="dropdown rtl-dropdown">
+      <button class="btn custom-button"><i class="fas fa-cloud-download-alt"></i> المصادر الرقمية</button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="http://www.fshumaines-univ-alger2.dz/index.php/ar/2023-01-17-12-39-54?layout=edit&id=172"><i class="fas fa-newspaper"></i> مجلات الكلية</a></li>
+        <li><a class="dropdown-item" href="http://ddeposit.univ-alger2.dz:8080/xmlui/?locale-attribute=fr"><i class="fas fa-archive"></i> المستودع الرقمي للجامعة</a></li>
+        <li><a class="dropdown-item" href="https://www.ccdz.cerist.dz/"><i class="fas fa-search"></i> الفهرس المشترك CCDZ</a></li>
+        <li><a class="dropdown-item" href="https://www.asjp.cerist.dz/"><i class="fas fa-cloud"></i> منصة ASJP</a></li>
+        <li><a class="dropdown-item" href="https://www.sndl.cerist.dz/"><i class="fas fa-database"></i> نظام SNDL</a></li>
+        <li><a class="dropdown-item" href="https://www.pnst.cerist.dz/"><i class="fas fa-network-wired"></i> بوابة PNST</a></li>
+      </ul>
+    </div>
+
+    <!-- الخدمات المرجعية -->
+    <div class="dropdown rtl-dropdown">
+      <button class="btn custom-button"><i class="fas fa-clipboard-list"></i> الخدمات المرجعية</button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="pageask.html"><i class="fas fa-question-circle"></i> اسأل المكتبي</a></li>
+        <li><a class="dropdown-item" href="pageshare.html"><i class="fas fa-share-alt"></i> شارك في سياسة التزويد</a></li>
+        <li><a class="dropdown-item" href="pageform.html"><i class="fas fa-chalkboard-teacher"></i> تدريب المستفيدين</a></li>
+      </ul>
+    </div>
+
+    <!-- خدمات المكتبة -->
+    <div class="dropdown rtl-dropdown">
+      <button class="btn custom-button"><i class="fas fa-concierge-bell"></i> خدمات المكتبة</button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="pageinscre.html"><i class="fas fa-id-card"></i> التسجيل في المكتبة</a></li>
+        <li><a class="dropdown-item" href="pageloan.html"><i class="fas fa-exchange-alt"></i> خدمة الإعارة</a></li>
+        <li><a class="dropdown-item" href="pagedsi.html"><i class="fas fa-rss"></i> البث الانتقائي</a></li>
+        <li class="dropdown-submenu">
+          <a class="dropdown-item" href="pageida3.html"><i class="fas fa-upload"></i> الإيداع
+            <svg class="submenu-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L6.707 7l4.647 4.646a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pagememoire.html"><i class="fas fa-file-alt"></i> إيداع الرسائل الجامعية</a></li>
+            <li><a class="dropdown-item" href="pageimp.html"><i class="fas fa-newspaper"></i> إيداع المطبوعات</a></li>
+          </ul>
+        </li>
+        <li><a class="dropdown-item" href="pagereserv.html"><i class="fas fa-calendar-check"></i> خدمة حجز الوثائق</a></li>
+        <li><a class="dropdown-item" href="pagereserv.html"><i class="fas fa-calendar-check"></i>فهرس المكتبة</a></li>
+      </ul>
+    </div>
+
+    <!-- نبذة عن المكتبة -->
+    <div class="dropdown rtl-dropdown">
+      <button class="btn custom-button"><i class="fas fa-book"></i> نبذة عن المكتبة</button>
+      <ul class="dropdown-menu">
+        <li class="dropdown-submenu">
+          <a class="dropdown-item" href="#"><i class="fas fa-info-circle"></i> تقديم المكتبة
+            <svg class="submenu-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L6.707 7l4.647 4.646a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pagedif.html"><i class="fas fa-history"></i> تعريف ونشأة المكتبة</a></li>
+            <li><a class="dropdown-item" href="pagegoals.html"><i class="fas fa-bullseye"></i> الأهداف المستقبلية</a></li>
+            <li><a class="dropdown-item" href="pagerh.html"><i class="fas fa-users"></i> الإمكانيات البشرية</a></li>
+            <li><a class="dropdown-item" href="pagemg.html"><i class="fas fa-cogs"></i> الإمكانيات المادية</a></li>
+          </ul>
+        </li>
+        <li><a class="dropdown-item" href="pagerulse.html"><i class="fas fa-cogs"></i> النظام الداخلي</a></li>
+        <li><a class="dropdown-item" href="pageservies.html"><i class="fas fa-laptop"></i> خدمات المكتبة</a></li>
+        <li><a class="dropdown-item" href="pageracid.html"><i class="fas fa-archive"></i> رصيد المكتبة</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- الصورة في أقصى اليمين مع رابط -->
+  <div class="header-image">
+    <a href="index.html">
+      <img src="img/path-to-your-image.png" alt="صورة" />
+    </a>
+  </div>
+</div>
+
+<!-- تنسيقات CSS -->
+<style>
+  body {
+    margin: 0;
+    padding-top: 100px;
+    font-family: 'Cairo', sans-serif;
+    background-color: white;
+  }
+
+  .header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 120px;
+  }
+
+  .header-image a img {
+    height: 90px;
+    object-fit: contain;
+    max-width: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* تأثير التحويم */
+  .header-image a:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .dropdown-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    flex-grow: 1;
+  }
+
+  .custom-button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 250px;
+    background-color: white;
+    text-align: right;
+    padding: 0;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+    top: 0;
+    right: 100%;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 16px;
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    gap: 12px;
+    font-size: 16px;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .submenu-arrow {
+    margin-left: auto;
+  }
+
+  @media (max-width: 768px) {
+    .header-bar {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-image {
+      order: 2;
+      margin-top: 10px;
+    }
+
+    .dropdown-bar {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dropdown-menu,
+    .dropdown-submenu .dropdown-menu {
+      position: static;
+      display: none !important;
+      box-shadow: none;
+    }
+
+    .dropdown:hover > .dropdown-menu,
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: block !important;
+    }
+  }
+  body.dark-mode {
+    background-color: #121212;
+    color: white;
+  }
+
+  /* بطاقات الخدمات في الوضع الليلي */
+body.dark-mode .service-item {
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+/* النصوص داخل البطاقات */
+body.dark-mode .service-item h5,
+body.dark-mode .service-item p {
+  color: white !important;
+}
+
+/* الأيقونات تظل زرقاء */
+body.dark-mode .service-item i {
+  color: #0dfde9 !important; /* أو أي لون تريده */
+}
+
+
+  .header-bar.dark-mode {
+    background-color: #1e1e1e;
+  }
+
+  .custom-button.dark-mode {
+    background-color: #2c2c2c;
+    color: white;
+  }
+
+  .dropdown-menu.dark-mode {
+    background-color: #1e1e1e;
+    color: white;
+  }
+
+  .dropdown-item.dark-mode {
+    background-color: #1e1e1e;
+    color: white;
+  }
+
+  .dropdown-item.dark-mode:hover {
+    background-color: #333;
+    color: white;
+  }
+
+  
+
+</style>
+
+
+
+
+
+
+
+
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5" style="overflow-x: hidden;">
+  <div class="owl-carousel header-carousel position-relative">
+
+    <!-- الشريحة 1 -->
+    <div class="owl-carousel-item position-relative overflow-hidden">
+      <img class="img-fluid zoom-slow delay-0" src="img/WA.jpg" alt="">
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+           style="background: rgba(24, 29, 56, .7);">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">أهلا بكم</h5>
+              <h1 class="display-3 text-white animated slideInDown">مكتبة كلية العلوم الإنسانية</h1>
+              <p class="text-white mb-4 pb-2" style="font-size: 1.5rem;">
+                مرحبا بك في موقع مكتبة كلية العلوم الإنسانية لجامعة أبو قاسم سعد الله الذي صمم بتطبيقات الذكاء الاصطناعي
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- الشريحة 5 (مطابقة للشريحة 2) -->
+    <div class="owl-carousel-item position-relative overflow-hidden">
+      <img class="img-fluid zoom-slow delay-1" src="img/1mai.jpg" alt="">
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+           style="background: rgba(24, 29, 56, .7);">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">اليوم العالمي للشغل</h5>
+              <h1 class="display-3 text-white animated slideInDown"> احتفالية يوم العمال تحت قبة مكتبة كلية العلوم الإنسانية</h1>
+              <p class="text-white mb-4 pb-2 fs-4">
+            تكريم عمال الكلية نظير جهودهم المثمرة وتفانيهم في أداء واجباتهم
+              </p>
+              <a href="page1mai.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">اقرأ المزيد</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- الشريحة 2 -->
+    <div class="owl-carousel-item position-relative overflow-hidden">
+      <img class="img-fluid zoom-slow delay-1" src="img/ASP.jpg" alt="">
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+           style="background: rgba(24, 29, 56, .7);">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">لجمهورنا</h5>
+              <h1 class="display-3 text-white animated slideInDown">نرافقكم في مسار البحث العلمي الأكاديمي</h1>
+              <p class="text-white mb-4 pb-2 fs-4">
+                نقدم خدمات رقمية وإعارة ومتابعة علمية لكل الطلبة والأساتذة وباحثي الكلية
+              </p>
+              <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">اقرأ المزيد</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الشريحة 3 -->
+    <div class="owl-carousel-item position-relative overflow-hidden">
+      <img class="img-fluid zoom-slow delay-2" src="img/futur.jpg" alt="">
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+           style="background: rgba(24, 29, 56, .7);">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">عالم رقمي جديد</h5>
+              <h1 class="display-3 text-white animated slideInDown">لقد بدأ عصر الذكاء الاصطناعي في المكتبات</h1>
+              <p class="text-white mb-4 pb-2" style="font-size: 1.5rem;">
+                تقنيات وتطبيقات تكنولوجية متطورة تستخدم الآن في المكتبات
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- الشريحة 4 (مطابقة للشريحة 2) -->
+<div class="owl-carousel-item position-relative overflow-hidden">
+  <img class="img-fluid zoom-slow delay-1" src="img/course-6.jpg" alt="">
+  <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+       style="background: rgba(24, 29, 56, .7);">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-sm-10 col-lg-8">
+          <h5 class="text-primary text-uppercase mb-3 animated slideInDown">أوقات العمل</h5>
+          <h1 class="display-3 text-white animated slideInDown">دوام العمل وأيام الاستقبال في المكتبة</h1>
+          <p class="text-white mb-4 pb-2 fs-4">
+            تعلن إدارة مكتبة كلية العلوم اإلنسانية عن أيام استقبال وإيداع المطبوعات الجامعية
+          </p>
+          <a href="pagetime.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">اقرأ المزيد</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- الشريحة 5 (مطابقة للشريحة 2) -->
+    <div class="owl-carousel-item position-relative overflow-hidden">
+      <img class="img-fluid zoom-slow delay-1" src="img/course-5.jpg" alt="">
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+           style="background: rgba(24, 29, 56, .7);">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">ساهم في إثراء المكتبة من إبداعك</h5>
+              <h1 class="display-3 text-white animated slideInDown">الإيداع في مكتبة الكلية</h1>
+              <p class="text-white mb-4 pb-2 fs-4">
+                شروط إيداع المطبوعات والأطروحات على مستوى مكتبة كلية العلوم الإنسانية
+              </p>
+              <a href="pageida3.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">اقرأ المزيد</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      
+  
+    </div>
+</div>
+<!-- Carousel End -->
+
+<!-- CSS لحركة الصور وتأخيرها -->
+<style>
+  .zoom-slow {
+    animation: zoomInSlow 15s ease-in-out infinite alternate;
+    transform-origin: center center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @keyframes zoomInSlow {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* تأخيرات مختلفة للحركة */
+  .delay-0 { animation-delay: 0s; }
+  .delay-1 { animation-delay: 3s; }
+  .delay-2 { animation-delay: 6s; }
+
+  .owl-carousel-item {
+    overflow: hidden;
+  }
+
+  .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-x: hidden;
+  }
+</style>
+
+
+  
+  
+
+
+    <!<!-- خدمات المكتبة -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p>نوفر مجموعة من الخدمات لتلبية احتياجات الطلاب والباحثين والقراء</p>
+            </div>
+            <div class="row g-4">
+                <!-- خدمة الإعارة -->
+                <div class="col-lg-3 col-sm-6 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="service-item text-center pt-3 w-100">
+                      <div class="p-4 h-100 d-flex flex-column justify-content-between">
+                            <i class="fa fa-3x fa-book text-primary mb-4"></i>
+                            <h5 class="mb-3">خدمة الإعارة</h5>
+                            <p>إمكانية استعارة الكتب والمراجع لفترة محددة مع سهولة التجديد</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- تدريب المستفيدين -->
+                <div class="col-lg-3 col-sm-6 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="service-item text-center pt-3 w-100">
+                      <div class="p-4 h-100 d-flex flex-column justify-content-between">
+                            <i class="fa fa-3x fa-chalkboard-teacher text-primary mb-4"></i>
+                            <h5 class="mb-3">تدريب المستفيدين</h5>
+                            <p>تقديم ورشات ودورات لتأهيل الزوار على استخدام الموارد والخدمات المتاحة</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- إيداع الرسائل الجامعية -->
+                <div class="col-lg-3 col-sm-6 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="service-item text-center pt-3 w-100">
+                      <div class="p-4 h-100 d-flex flex-column justify-content-between">
+                            <i class="fa fa-3x fa-file-alt text-primary mb-4"></i>
+                            <h5 class="mb-3">إيداع الرسائل الجامعية</h5>
+                            <p>إتاحة خدمة إيداع الرسائل والأطروحات والمطبوعات الجامعية لحفظها وإتاحتها للباحثين</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- الإرشاد المكتبي -->
+                <div class="col-lg-3 col-sm-6 d-flex wow fadeInUp" data-wow-delay="0.1s">
+                  <div class="service-item text-center pt-3 w-100">
+                      <div class="p-4 h-100 d-flex flex-column justify-content-between">
+                            <i class="fa fa-3x fa-user-graduate text-primary mb-4"></i>
+                            <h5 class="mb-3">الإرشاد المكتبي</h5>
+                            <p>مساعدة المستخدمين في البحث عن المصادر واستخدام فهرس المكتبة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- نهاية قسم خدمات المكتبة -->
+    
+
+<!-- مكتبات رقمية Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h6 class="section-title bg-white text-center text-primary px-3">الابحار في عالم المعرفة</h6>
+      <h1 class="mb-4">مكتبات رقمية</h1>
+    </div>
+
+    <div class="owl-carousel testimonial-carousel position-relative" 
+         data-bs-ride="carousel" 
+         data-autoplay="true" 
+         data-autoplay-timeout="2000" 
+         data-loop="true" 
+         data-margin="30" 
+         data-items="5" 
+         data-responsive='{"0": {"items": 2}, "768": {"items": 4}, "1024": {"items": 5}}'>
+      
+      <!-- مكتبة 1 -->
+      <div class="text-center">
+        <a href="https://www.wdl.org/ar/" target="_blank">
+          <img src="img/logo-world.svg" class="partner-img mb-3" alt="المكتبة الرقمية العالمية">
+          <h5 class="mb-0">المكتبة الرقمية العالمية</h5>
+        </a>
+      </div>
+
+      <!-- مكتبة 2 -->
+      <div class="text-center">
+        <a href="http://ulib.isri.cmu.edu/" target="_blank">
+          <img src="img/ULIBsmall.png" class="partner-img mb-3" alt="المكتبة الرقمية الكونية">
+          <h5 class="mb-0">المكتبة الرقمية الكونية</h5>
+        </a>
+      </div>
+
+      <!-- مكتبة 3 -->
+      <div class="text-center">
+        <a href="https://sdl.edu.sa/SDLPortal/Publishers.aspx" target="_blank">
+          <img src="img/SDL-Logo.png" class="partner-img mb-3" alt="كتب">
+          <h5 class="mb-0">بوابة المعرفة السعودية</h5>
+        </a>
+      </div>
+
+      <!-- مكتبة 4 -->
+      <div class="text-center">
+        <a href="https://gallica.bnf.fr/accueil/fr/html/accueil-fr" target="_blank">
+          <img src="img/logo_gallica.png" class="partner-img mb-3" alt=" الفرنسية Gallica مكتبة">
+          <h5 class="mb-0">  الفرنسية Gallica مكتبة</h5>
+        </a>
+      </div>
+
+      <!-- مكتبة 5 -->
+      <div class="text-center">
+        <a href="https://www.aruc.org/ar/landing-digital-library" target="_blank">
+          <img src="img/arucorgarlany.png.svg" class="partner-img mb-3" alt="الفهرس"">
+          <h5 class="mb-0">مكتبة الفهرس العربي الموحد</h5>
+        </a>
+      </div>
+
+      <!-- مكتبة 6 -->
+      <div class="text-center">
+        <a href="https://dp.la/" target="_blank">
+          <img src="img/digital-public-library-of-america.png" class="partner-img mb-3" alt="Digital">
+          <h5 class="mb-0">Digital Public Library of America</h5>
+        </a>
+      </div>
+
+      <!-- مكتبة 7 -->
+      <div class="text-center">
+        <a href="https://books.google.com/" target="_blank">
+          <img src="img/Google_Books.png" class="partner-img mb-3" alt="Google Books">
+          <h5 class="mb-0">Google Books</h5>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- مكتبات رقمية End -->
+
+<!-- CSS مخصص -->
+<style>
+.partner-img {
+  height: 70px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: all 0.5s ease;
+}
+.owl-carousel:hover .partner-img {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+.text-center {
+  transition: all 0.5s ease;
+}
+
+
+</style>
+
+<!-- بودكاست -->
+<div class="container my-5 podcast-section" style="direction: rtl;">
+  <h2 class="text-center mb-5" style="color: #007f7f; font-weight: 700; font-family: 'Cairo', sans-serif;">بودكاست المكتبة</h2>
+  <div class="row">
+
+    <!-- الحلقة 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="card podcast-card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title">البحث العلمي (المآخذ، والتطلعات) | أ. د. فيصل بالعمش | #بودكاست_ملهم          </h5>
+          <p class="card-text text-muted">تحدثنا عن مفهوم البحث العلمي وابتداءً من قرار الدخول في البحث العلمي، ثم تحدثنا عن أبرز العقبات التي تواجه الباحث الأكاديمي من تقسيم الموضوعات وطرق اختيار الموضوعات ..أبحرنا كثيرًا في أبرز مشاكل البحث العلمي بدءًا من التكوين وحتى النسخ واللصق وسرقة الأبحاث ..ختمنا حديثنا بطقوس كتابة البحث العلمي ورأيه فيها .. </p>
+          <audio controls class="w-100 mt-2 mb-2">
+            <source src="audio/podcast1.m4a" type="audio/mpeg">
+            المتصفح لا يدعم تشغيل الصوت.
+          </audio>
+          <a href="audio/podcast1.m4a" download class="btn btn-sm btn-outline-success w-100">تحميل الحلقة</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- الحلقة 2 -->
+    <div class="col-md-4 mb-4">
+      <div class="card podcast-card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title">اكتب كتب مفيدة: كيف تكتب كتابك الأول بنجاح | بودكاست غلاف          </h5>
+          <p class="card-text text-muted"> نتناول موضوع «كيف تكتب كتابك الأول بنجاح ؟» لنساعدك على تحويل فكرتك إلى كتاب حقيقي، نستعرض الخطوات الأساسية للبدء في كتابة أي كتاب، من اختيار الفكرة المناسبة إلى كتابة الفهرس ووضع خطة كتابة مناسبة.</p>
+          <audio controls class="w-100 mt-2 mb-2">
+            <source src="audio/podcast2.m4a" type="audio/mpeg">
+            المتصفح لا يدعم تشغيل الصوت.
+          </audio>
+          <a href="audio/podcast2.m4a" download class="btn btn-sm btn-outline-success w-100">تحميل الحلقة</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- الحلقة 3 -->
+    <div class="col-md-4 mb-4">
+      <div class="card podcast-card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title">كتب الفهارس والأثبات والإجازات | بودكاست فهرست  </h5>
+          <p class="card-text text-muted">تناول الحلقة الأثبات، الفهارس، البرامج، المشيخات، المعاجم، الإجازات، الإفادات والإنشادات، المسلسلات. يتناول الدكتور هيثم هذا النوع من الكتب بالتقسيم والتصنيف، ثم يفصل القول في بيان فوائد هذا النوع من الكتب للباحث في تاريخ الحركة العلمية عند المسلمين. تُختم الحلقة بالإشارة إلى نوعين من الكتب، التي جمعت أسماء هذا النوع من التصنيف، والدراسات المعاصرة حول هذه الكتب</p>
+          <audio controls class="w-100 mt-2 mb-2">
+            <source src="audio/podcast3.m4a" type="audio/mpeg">
+            المتصفح لا يدعم تشغيل الصوت.
+          </audio>
+          <a href="audio/podcast3.m4a" download class="btn btn-sm btn-outline-success w-100">تحميل الحلقة</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+  .podcast-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .podcast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 127, 127, 0.2);
+  }
+
+  .podcast-card .card-title {
+    color: #005f5f;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .podcast-card .btn-outline-success {
+    border-color: #007f7f;
+    color: #007f7f;
+  }
+
+  .podcast-card .btn-outline-success:hover {
+    background-color: #007f7f;
+    color: white;
+  }
+
+  audio::-webkit-media-controls-panel {
+    background-color: #e8fafa;
+  }
+
+  audio {
+    border-radius: 5px;
+  }
+
+  /* يجعل لون الفقرة أبيض فقط في الوضع الليلي */
+body.dark-mode p.lead {
+  color: white !important;
+}
+</style>
+    
+
+<!-- اقتراحات وتعليقات المستفيدين Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h6 class="section-title bg-white text-center text-primary px-3">اقتراحات وتعليقات المستفيدين</h6>
+    </div>
+
+    <div class="owl-carousel testimonial-carousel position-relative" 
+         data-bs-ride="carousel" 
+         data-autoplay="true" 
+         data-autoplay-timeout="3000" 
+         data-loop="true" 
+         data-margin="30" 
+         data-items="1">
+      
+      <!-- تعليق إيجابي 1 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>المكتبة توفر بيئة رائعة للدراسة والبحث، مما يجعلها مصدرًا أساسيًا للطلاب، بالتوفيق للجميع.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق 1 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>يرجى توظيف متخصصين في الإعلام الآلي للوقوف على مشاكل النظام الآلي و إصلاحها.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق 2 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>يرجى اقتناء المزيد من المصادر بكل أنواعها في جميع تخصصات الكلية لأن الرصيد الموجود في المكتبة قديم.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق إيجابي 2 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>تنظيم المكتبة ممتاز، كل شيء مرتب وسهل الوصول إليه.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق إيجابي 3 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>الطاولات والكراسي والأرفف جديدة ، وفقكم الله</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق 3 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>هناك تذبذب في الأنترنيت</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق إيجابي 4 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>المكتبة توفر وسائل راحة مريحة تجعلني أستطيع الدراسة لساعات طويلة.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق إيجابي 5 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>دعم فريق العمل في المكتبة سريع وفعّال، دائمًا ما يساعدني في العثور على ما أحتاجه.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق 4 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>يوجد نقص التهوية في المكتبة، يرجى اصلاح الوضع</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تعليق 5 -->
+      <div class="text-center">
+        <div class="talk-bubble">
+          <div class="talktext">
+            <h3>تعليق مستفيد:</h3>
+            <p>الارضية باردة، كدت أتجمد</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- اقتراحات وتعليقات المستفيدين End -->
+
+<!-- CSS مخصص -->
+<style>
+/* تحكم بحجم الفقاعة والتعليقات */
+.testimonial-carousel .talk-bubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #41939c;
+  color: #fff;
+  border-radius: 20px;
+  margin: 20px 0;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 45s infinite linear; /* تعديل الحركة لتكون مستمرة ولن ترجع للبداية */
+  width: 100%; /* يجعل عرض الفقاعة ممتد */
+  max-width: 550px; /* تحديد أقصى عرض ثابت */
+  min-height: 120px; /* تحديد الحد الأدنى للارتفاع */
+}
+
+/* مثلث صغير أسفل الفقاعة */
+.testimonial-carousel .talk-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #41939c;
+}
+
+/* تأثير الحركة: انزلاق من اليمين */
+@keyframes slideIn {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* إضافة تأخير بين التعليقات */
+.testimonial-carousel .text-center:nth-child(1) .talk-bubble {
+  animation-delay: 0s;
+}
+
+.testimonial-carousel .text-center:nth-child(2) .talk-bubble {
+  animation-delay: 7s;
+}
+
+.testimonial-carousel .text-center:nth-child(3) .talk-bubble {
+  animation-delay: 14s;
+}
+
+.testimonial-carousel .text-center:nth-child(4) .talk-bubble {
+  animation-delay: 21s;
+}
+
+.testimonial-carousel .text-center:nth-child(5) .talk-bubble {
+  animation-delay: 28s;
+}
+
+.testimonial-carousel .text-center:nth-child(6) .talk-bubble {
+  animation-delay: 35s;
+}
+
+.testimonial-carousel .text-center:nth-child(7) .talk-bubble {
+  animation-delay: 42s;
+}
+
+/* تنسيق النص داخل الفقاعة */
+.testimonial-carousel .talk-bubble .talktext {
+  direction: rtl; /* اتجاه النصوص من اليمين لليسار */
+  text-align: right; /* محاذاة النص لليمين */
+  font-family: 'Cairo', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  width: 100%; /* جعل النص يأخذ عرض الفقاعة كاملة */
+  max-width: 500px; /* تحديد عرض أقصى للنص */
+  margin: 0; /* إزالة المسافة حول النص */
+}
+
+/* تنسيق العنوان */
+.section-title {
+  font-size: 22px;
+  color: #41939c;
+}
+
+.text-center h3 {
+  font-size: 18px;
+}
+
+/* تحسين التوافق مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .testimonial-carousel .talk-bubble {
+    padding: 15px;
+  }
+
+  .testimonial-carousel .talktext {
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+}
+</style>
+
+
+  
+  
+    
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+      <div class="row g-5">
+          <!-- النص على اليسار -->
+          <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s" style="text-align: right;">
+              <h6 class="section-title bg-white text-start text-primary pe-3">عن المكتبة</h6>
+              <h1 class="mb-4">مكتبة كلية العلوم الإنسانية</h1>
+              <p class="mb-4">تأسست مكتبة كلية العلوم الإنسانية بجامعة الجزائر 2 في 16 أفريل 2015، بهدف تلبية احتياجات المجتمع الأكاديمي من طلبة وأساتذة وباحثين. تقدم المكتبة خدماتها في تخصصات الإعلام والاتصال، الفلسفة، والتاريخ.</p>
+              <p class="mb-4">مكتبة الكلية تسعى إلى تسهيل وصول الطلاب والباحثين إلى المعلومات وتوفير بيئة مناسبة للبحث العلمي، بالإضافة إلى تقديم خدمات رفيعة المستوى، بما في ذلك تسيير الرصيد الوثائقي وتوجيه الباحثين إلى مصادر المعرفة الحديثة.</p>
+
+              <!-- تعديل لعرض النقاط بشكل متناسق ضمن صف واحد -->
+              <div class="row gy-2 gx-4 mb-4" style="display: flex; flex-wrap: wrap; justify-content: flex-end;">
+                  <div class="col-sm-6 col-md-6 col-lg-6" style="display: flex; align-items: center;">
+                      <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>خدمات البحث والتوجيه الببليوغرافي</p>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6" style="display: flex; align-items: center;">
+                      <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>وثائق متنوعة بلغتين (العربية والفرنسية)</p>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6" style="display: flex; align-items: center;">
+                      <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>قاعدة بيانات تحت نظام سنجاب</p>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6" style="display: flex; align-items: center;">
+                      <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>إهداء وتبادل الكتب مع مؤسسات أخرى</p>
+                  </div>
+              </div>
+
+              <a class="btn btn-primary py-3 px-5 mt-2" href="pagedif.html">تصفح تاريخ المكتبة</a>
+          </div>
+
+          <!-- الصورة على اليمين -->
+          <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+              <div class="position-relative h-100">
+                  <img class="img-fluid position-absolute w-100 h-100" src="img/WA.jpg" alt="مكتبة كلية العلوم الإنسانية" style="object-fit: cover;">
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- About End -->
+
+
+
+
+<!-- رابط خط Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- تفعيل الخط على كل عناصر الصفحة -->
+<style>
+    body, h1, h2, h3, h4, h5, h6, p, a, small, div {
+        font-family: 'Cairo', sans-serif !important;
+    }
+
+    /* تأثيرات حركة جميلة للصور */
+    .category img {
+        transition: transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .category img:hover {
+        transform: scale(1.1) rotate(3deg); /* إضافة دوران خفيف مع تكبير */
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* حركة الصور داخل الأعمدة */
+    .wow.zoomIn {
+        animation: zoomIn 1s ease-out;
+    }
+
+    /* تأثير Zoom In */
+    @keyframes zoomIn {
+        0% {
+            transform: scale(0.8) rotate(-5deg);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    /* إضافة بعض المسافات والظل للعناصر داخل قسم الصور */
+    .category .position-relative {
+        overflow: hidden;
+        border-radius: 10px; /* جعل الزوايا دائرية */
+    }
+
+    /* تحسين النصوص داخل العناوين */
+    .section-title {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Categories Start -->
+<div class="container-xxl py-5 category">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">وسائط رقمية</h6>
+            <h1 class="mb-5">صور من المكتبة</h1>
+        </div>
+        <div class="row g-3">
+            <div class="col-lg-7 col-md-6">
+                <div class="row g-3">
+                    <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
+                        <a class="position-relative d-block overflow-hidden" href="img/cat-1.jpg" target="_blank">
+                            <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
+                        <a class="position-relative d-block overflow-hidden" href="img/cat-2.jpg" target="_blank">
+                            <img class="img-fluid" src="img/cat-2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
+                        <a class="position-relative d-block overflow-hidden" href="img/cat-3.jpg" target="_blank">
+                            <img class="img-fluid" src="img/cat-3.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
+                <a class="position-relative d-block h-100 overflow-hidden" href="img/cat-4.jpg" target="_blank">
+                    <img class="img-fluid position-absolute w-100 h-100" src="img/cat-4.jpg" alt="" style="object-fit: cover;">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Categories End -->
+
+
+
+
+
+
+
+
+
+   <!-- مؤسسات شريكة Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h6 class="section-title bg-white text-center text-primary px-3">روابط مهمة</h6>
+      <h1 class="mb-4">مؤسسات داعمة ومصادر علمية</h1>
+    </div>
+
+    <div class="owl-carousel testimonial-carousel position-relative" 
+         data-bs-ride="carousel" 
+         data-autoplay="true" 
+         data-autoplay-timeout="2000" 
+         data-loop="true" 
+         data-margin="30" 
+         data-items="5" 
+         data-responsive='{"0": {"items": 2}, "768": {"items": 4}, "1024": {"items": 5}}'>
+      
+      <!-- مؤسسة 1 -->
+      <div class="text-center">
+        <a href="https://www.asjp.cerist.dz/" target="_blank">
+          <img src="img/asjp.png" class="partner-img mb-3" alt="ASJP">
+          <h5 class="mb-0">ASJP</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 2 -->
+      <div class="text-center">
+        <a href="https://www.sndl.cerist.dz/" target="_blank">
+          <img src="img/sndl.png" class="partner-img mb-3" alt="SNDL">
+          <h5 class="mb-0">SNDL</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 3 -->
+      <div class="text-center">
+        <a href="https://www.pnst.cerist.dz/" target="_blank">
+          <img src="img/pnst.png" class="partner-img mb-3" alt="PNST">
+          <h5 class="mb-0">PNST</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 4 -->
+      <div class="text-center">
+        <a href="https://www.ccdz.cerist.dz/" target="_blank">
+          <img src="img/ccdz.png" class="partner-img mb-3" alt="CCDZ">
+          <h5 class="mb-0">الفهرس المشترك</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 5 -->
+      <div class="text-center">
+        <a href="https://www.mesrs.dz/" target="_blank">
+          <img src="img/svg.png" class="partner-img mb-3" alt="MESRS">
+          <h5 class="mb-0">وزارة التعليم العالي</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 6 -->
+      <div class="text-center">
+        <a href="https://elearning24-25.univ-alger2.dz/login/index.php?loginredirect=1" target="_blank">
+          <img src="img/moodle.png" class="partner-img mb-3" alt="Moodle">
+          <h5 class="mb-0">موقع مودل</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 7 -->
+      <div class="text-center">
+        <a href="https://www.wikibooks.org/" target="_blank">
+          <img src="img/Wikibooks-logo-tiles_2x.png" class="partner-img mb-3" alt="Digital Library">
+          <h5 class="mb-0">wikibooks</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 8 -->
+      <div class="text-center">
+        <a href="https://www.researchgate.net/" target="_blank">
+          <img src="img/reaserch.png" class="partner-img mb-3" alt="ResearchGate">
+          <h5 class="mb-0">ResearchGate</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 9 -->
+      <div class="text-center">
+        <a href="https://www.univ-alger2.dz/" target="_blank">
+          <img src="img/unive2.png" class="partner-img mb-3" alt="Université Alger 2">
+          <h5 class="mb-0">جامعة الجزائر 2</h5>
+        </a>
+      </div>
+
+      <!-- مؤسسة 10 -->
+      <div class="text-center">
+        <a href="https://scholar.google.com/" target="_blank">
+          <img src="img/google.png" class="partner-img mb-3" alt="Google Scholar">
+          <h5 class="mb-0">Google Scholar</h5>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- مؤسسات شريكة End -->
+
+<!-- CSS مخصص -->
+<style>
+/* تحكم بحجم الصور وتنسيقها */
+.partner-img {
+  height: 70px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: all 0.5s ease;
+}
+
+/* تأثير عند المرور على السلايدر كاملاً */
+.owl-carousel:hover .partner-img {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* تنعيم الحركة */
+.text-center {
+  transition: all 0.5s ease;
+}
+</style>
+
+  
+        
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container py-5">
+    <div class="row g-5">
+
+      <!-- العمود 1: شعار كبير + خريطة الكلية -->
+      <div class="col-lg-3 col-md-6">
+        <img src="img/path-to-your-image.png" alt="شعار الجامعة" class="img-fluid mb-3" style="max-width: 280px; border-radius: 8px;">
+        <div class="map-responsive">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3230.1731902926724!2d3.0029142!3d36.7743779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fb1b1b286dc97%3A0x38f2ff1ceb954057!2z2KfZhNmF2LnYqSDYp9mE2YXYudipINin2YTYqtmE2KfYsdmK2Kkg2KfZhNmF2LPZhtmK2Kkg2KfZhNiu2YTZhdi52Kkg2KfZhNin2YTZg9ipINmI2KfZhti52YTZhQ!5e0!3m2!1sar!2sdz!4v1715187172365!5m2!1sar!2sdz"
+            width="500%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- العمود 2: روابط سريعة -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-white mb-3">روابط سريعة</h4>
+        <a class="btn btn-link" href="">تعريف ونشأة المكتبة</a>
+        <a class="btn btn-link" href="">اسأل بالمكتبي</a>
+        <a class="btn btn-link" href="">النظام الداخلي</a>
+        <a class="btn btn-link" href="">التسجيل في المكتبة</a>
+        <a class="btn btn-link" href="">شارك في سياسة التزويد</a>
+      </div>
+
+      <!-- العمود 3: معلومات المكتبة -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-white mb-3">معلومات عن المكتبة</h4>
+        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>02 شارع جمال الأفغاني، بوزريعة، الجزائر العاصمة</p>
+        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+************</p>
+        <p class="mb-2"><i class="fa fa-envelope me-3"></i>kaima.ainouz@univ-alger2.dz</p>
+        <div class="d-flex pt-2">
+          <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-x"></i></a>
+          <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-youtube"></i></a>
+          <a class="btn btn-outline-light btn-social" href="/rss.xml"><i class="fas fa-rss"></i></a>
+        </div>
+      </div>
+
+      <!-- العمود 4: روابط مفيدة -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-white mb-3">روابط مفيدة</h4>
+        <a class="btn btn-link" href="https://www.univ-alger2.dz/index.php/ar/" target="_blank">موقع جامعة الجزائر 2</a>
+        <a class="btn btn-link" href="https://bibliotheque.univ-alger2.dz/" target="_blank">موقع المكتبة المركزية للجامعة</a>
+        <a class="btn btn-link" href="http://fshumaines-univ-alger2.dz/index.php/ar/" target="_blank">موقع كلية العلوم الإنسانية</a>
+        <a class="btn btn-link" href="http://fttps://fshs.univ-alger2.dz/shumaines-univ-alger2.dz/index.php/ar/2021-06-27-13-26-44" target="_blank"> موقع مكتبة كلية العلوم الإنسانية القديم (أرشيف)</a>
+        <a class="btn btn-link" href="https://elearning24-25.univ-alger2.dz/?redirect=0" target="_blank">موقع مودل</a>
+      </div>
+    </div>
+
+    <!-- قسم الحقوق -->
+    <div class="container">
+      <div class="copyright mt-4">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+            &copy; <span>موقع مكتبة كلية العلوم الإنسانية</span> جميع الحقوق محفوظة <span id="year"></span>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <div class="footer-menu">
+              <a href="#">الصفحة الرئيسية</a>
+              <a href="#">الأسئلة الشائعة</a>
+              <a href="#">اقترح تطوير الموقع</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CSS إضافي -->
+    <style>
+      .footer-menu {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .footer-menu a {
+        text-decoration: none;
+        color: #ffffff;
+        margin-left: 20px;
+        font-size: 14px;
+        border: none;
+      }
+
+      .footer-menu a:first-child {
+        margin-left: 0;
+      }
+
+      .footer-menu a:hover {
+        color: #ddd;
+      }
+
+      .footer-menu a:focus {
+        outline: none;
+      }
+
+      .map-responsive {
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        height: 0;
+      }
+
+      .map-responsive iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <!-- سنة تلقائية -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </div>
+</div>
+<!-- Footer End -->
+
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script>
+      function applySavedTheme() {
+        const theme = localStorage.getItem('theme');
+        const isDark = theme === 'dark';
+        const body = document.body;
+        body.classList.toggle('dark-mode', isDark);
+    
+        document.querySelector('.header-bar')?.classList.toggle('dark-mode', isDark);
+        document.querySelectorAll('.custom-button').forEach(btn => btn.classList.toggle('dark-mode', isDark));
+        document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.toggle('dark-mode', isDark));
+        document.querySelectorAll('.dropdown-item').forEach(item => item.classList.toggle('dark-mode', isDark));
+    
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+          toggleBtn.innerHTML = isDark
+            ? '<i class="fas fa-sun"></i> <span>الوضع النهاري</span>'
+            : '<i class="fas fa-moon"></i> <span>الوضع الليلي</span>';
+        }
+      }
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        applySavedTheme();
+    
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            applySavedTheme();
+          });
+        }
+      });
+    </script>
+    
+    
+</body>
+
+</html>
